@@ -1,0 +1,1444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MiSana — Your bilingual family health companion</title>
+  <meta name="description" content="MiSana is a bilingual family health companion that helps you understand health data, look up medications, check symptoms, and prepare for doctor appointments — privately on your iPhone." />
+
+  <!-- Favicon -->
+  <link rel="icon" href="favicon.ico" sizes="48x48">
+  <link rel="icon" href="favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="MiSana — Your bilingual family health companion" />
+  <meta property="og:description" content="Understand your health data, look up medications, check symptoms, and prepare for doctor appointments — all in Spanish and English. 100% private, on-device AI." />
+  <meta property="og:image" content="https://odphineguy.github.io/misana/og-image.jpg" />
+  <meta property="og:url" content="https://odphineguy.github.io/misana/" />
+  <meta property="og:site_name" content="MiSana" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="MiSana — Your bilingual family health companion" />
+  <meta name="twitter:description" content="Understand your health data, look up medications, check symptoms, and prepare for doctor appointments — all in Spanish and English. 100% private, on-device AI." />
+  <meta name="twitter:image" content="https://odphineguy.github.io/misana/og-image.jpg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#f4f9fd;
+      --surface:#f8fbfe;
+      --paper:#ffffff;
+      --ink:#0f2b3c;
+      --muted:#5a7186;
+      --line:rgba(17,105,160,.14);
+      --warm:#1169a0;
+      --warm-2:#1a8bc7;
+      --rose:#0d5f8a;
+      --gold:#4db8e8;
+      --sage:#2a9fd4;
+      --teal:#0e5c84;
+      --shadow:0 18px 60px rgba(17,105,160,.12);
+      --radius:28px;
+      --max:1200px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:"Outfit",sans-serif;
+      color:var(--ink);
+      background:
+        radial-gradient(circle at 10% 10%, rgba(26,139,199,.14), transparent 28%),
+        radial-gradient(circle at 85% 18%, rgba(13,95,138,.10), transparent 28%),
+        radial-gradient(circle at 80% 88%, rgba(14,92,132,.08), transparent 24%),
+        linear-gradient(180deg, #f4f9fd 0%, #f8fbfe 42%, #ffffff 100%);
+      overflow-x:hidden;
+    }
+
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      opacity:.4;
+      background-image:
+        linear-gradient(rgba(17,105,160,.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(17,105,160,.03) 1px, transparent 1px);
+      background-size:36px 36px;
+      mask-image:linear-gradient(to bottom, rgba(0,0,0,.55), transparent 70%);
+    }
+
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;display:block}
+    .container{width:min(var(--max), calc(100% - 32px)); margin:0 auto}
+
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:20;
+      backdrop-filter:blur(16px);
+      background:#ffffff;
+      border-bottom:1px solid rgba(17,105,160,.08);
+    }
+
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      min-height:78px;
+      gap:20px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      font-weight:800;
+      letter-spacing:-.03em;
+      color:#1169a0;
+    }
+
+    .brand-logo{
+      height:46px;
+      object-fit:contain;
+      flex:0 0 auto;
+    }
+
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:28px;
+      color:var(--muted);
+      font-weight:500;
+    }
+
+    .nav-links a{
+      position:relative;
+    }
+
+    .nav-links a::after{
+      content:"";
+      position:absolute;
+      left:0; right:0; bottom:-6px;
+      height:2px;
+      transform:scaleX(0);
+      transform-origin:left;
+      background:linear-gradient(90deg, var(--warm), var(--rose));
+      transition:transform .25s ease;
+    }
+    .nav-links a:hover::after{transform:scaleX(1)}
+
+    .nav-cta{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      min-height:52px;
+      padding:0 22px;
+      border-radius:999px;
+      font-weight:700;
+      letter-spacing:-.02em;
+      transition:transform .25s ease, box-shadow .25s ease, background .25s ease, color .25s ease;
+      cursor:pointer;
+      border:none;
+      font-family:inherit;
+    }
+
+    .btn:hover{transform:translateY(-2px)}
+    .btn-primary{
+      color:white;
+      background:linear-gradient(135deg, var(--warm) 0%, #1580b8 40%, var(--rose) 100%);
+      box-shadow:0 16px 30px rgba(13,95,138,.22);
+    }
+    .btn-secondary{
+      color:var(--ink);
+      background:rgba(255,255,255,.7);
+      border:1px solid rgba(17,105,160,.12);
+    }
+
+    .menu-toggle{
+      display:none;
+      width:48px;height:48px;border-radius:14px;border:1px solid rgba(17,105,160,.12);
+      background:#fff;
+      align-items:center;justify-content:center;cursor:pointer;
+      box-shadow:var(--shadow);
+    }
+
+    .menu-toggle span,
+    .menu-toggle span::before,
+    .menu-toggle span::after{
+      display:block;
+      width:20px;height:2px;border-radius:999px;
+      background:var(--ink);
+      position:relative;
+      transition:.25s ease;
+    }
+    .menu-toggle span::before,
+    .menu-toggle span::after{
+      content:"";
+      position:absolute;left:0;
+    }
+    .menu-toggle span::before{top:-6px}
+    .menu-toggle span::after{top:6px}
+    .menu-toggle.active span{background:transparent}
+    .menu-toggle.active span::before{top:0; transform:rotate(45deg)}
+    .menu-toggle.active span::after{top:0; transform:rotate(-45deg)}
+
+    .hero{
+      position:relative;
+      min-height:calc(100vh - 78px);
+      display:flex;
+      align-items:center;
+      overflow:hidden;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.05fr .95fr;
+      align-items:center;
+      gap:44px;
+      padding:56px 0 48px;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 14px;
+      border-radius:999px;
+      background:rgba(255,255,255,.78);
+      border:1px solid rgba(17,105,160,.12);
+      color:#1169a0;
+      font-weight:700;
+      box-shadow:0 10px 30px rgba(17,105,160,.08);
+      margin-bottom:18px;
+    }
+
+    .eyebrow-dot{
+      width:9px;height:9px;border-radius:50%;
+      background:linear-gradient(135deg, var(--warm), var(--rose));
+      box-shadow:0 0 0 6px rgba(17,105,160,.12);
+    }
+
+    .hero-brand{
+      font-family:"DM Serif Display", serif;
+      font-size:clamp(3rem, 8vw, 6.8rem);
+      line-height:.95;
+      letter-spacing:-.045em;
+      margin:0 0 10px;
+      color:#1169a0;
+      text-wrap:balance;
+    }
+
+    .hero-brand .accent{
+      display:block;
+      color:var(--ink);
+      font-size:clamp(1.45rem, 2.5vw, 2.4rem);
+      font-family:"Outfit",sans-serif;
+      font-weight:700;
+      line-height:1.1;
+      margin-top:12px;
+      letter-spacing:-.04em;
+    }
+
+    .hero-copy{
+      font-size:clamp(1.04rem,1.5vw,1.22rem);
+      line-height:1.7;
+      color:var(--muted);
+      max-width:600px;
+      margin:0 0 28px;
+    }
+
+    .hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+      margin-bottom:18px;
+    }
+
+    .micro-note{
+      color:#5a7186;
+      font-size:.96rem;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px 18px;
+      align-items:center;
+    }
+
+    .micro-note span{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+    }
+
+    .micro-note i{
+      width:8px;height:8px;border-radius:50%;
+      background:linear-gradient(135deg, var(--teal), var(--sage));
+      display:inline-block;
+    }
+
+    .hero-visual{
+      position:relative;
+      min-height:620px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .phone-stage{
+      position:relative;
+      width:min(100%, 580px);
+      aspect-ratio:1/1.06;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .halo{
+      position:absolute;
+      inset:8% 4%;
+      border-radius:50%;
+      background:
+        radial-gradient(circle at 50% 50%, rgba(255,255,255,.96) 0%, rgba(238,246,251,.92) 30%, rgba(26,139,199,.20) 54%, rgba(13,95,138,.10) 72%, transparent 78%);
+      filter:blur(2px);
+      animation:floatHalo 7s ease-in-out infinite;
+    }
+
+    .phone{
+      position:relative;
+      width:min(350px, 80vw);
+      height:700px;
+      border-radius:44px;
+      background:#0f2b3c;
+      padding:14px;
+      box-shadow:
+        0 24px 80px rgba(14,92,132,.28),
+        inset 0 0 0 1px rgba(255,255,255,.06);
+      transform:rotate(-8deg) translateY(0);
+      animation:phoneDrift 7s ease-in-out infinite;
+    }
+
+    .phone::before{
+      content:"";
+      position:absolute;
+      top:10px; left:50%;
+      transform:translateX(-50%);
+      width:120px; height:30px;
+      border-radius:0 0 18px 18px;
+      background:#091e2b;
+      z-index:3;
+    }
+
+    .screen{
+      position:relative;
+      width:100%;
+      height:100%;
+      overflow:hidden;
+      border-radius:34px;
+      background:
+        radial-gradient(circle at top right, rgba(26,139,199,.16), transparent 30%),
+        linear-gradient(180deg, #f4f9fd 0%, #ffffff 100%);
+      padding:22px 18px 18px;
+    }
+
+    .screen-header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-top:18px;
+      margin-bottom:18px;
+    }
+
+    .app-title{
+      font-weight:800;
+      color:#1169a0;
+      font-size:1.18rem;
+      letter-spacing:-.03em;
+    }
+
+    .lang-chip{
+      padding:10px 12px;
+      border-radius:999px;
+      background:rgba(17,105,160,.08);
+      color:#0e6a96;
+      font-weight:700;
+      font-size:.85rem;
+    }
+
+    .screen h3{
+      margin:0 0 10px;
+      font-size:1.65rem;
+      line-height:1.05;
+      letter-spacing:-.04em;
+    }
+
+    .screen p{
+      margin:0 0 18px;
+      color:var(--muted);
+      line-height:1.5;
+      font-size:.96rem;
+    }
+
+    .module{
+      padding:16px 0;
+      border-top:1px solid rgba(17,105,160,.09);
+    }
+
+    .module:first-of-type{border-top:none}
+
+    .module-row{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:14px;
+      margin-bottom:12px;
+    }
+
+    .module-title{
+      font-weight:700;
+      letter-spacing:-.02em;
+    }
+
+    .badge{
+      padding:8px 10px;
+      border-radius:999px;
+      font-size:.77rem;
+      font-weight:700;
+    }
+
+    .badge-private{background:rgba(14,92,132,.11); color:#0e5c84}
+    .badge-offline{background:rgba(26,139,199,.16); color:#0e5c84}
+    .badge-health{background:rgba(13,95,138,.12); color:#0d5f8a}
+
+    .metric{
+      display:flex;
+      align-items:end;
+      gap:12px;
+    }
+
+    .metric-big{
+      font-size:2.2rem;
+      font-weight:800;
+      letter-spacing:-.05em;
+      color:#0f2b3c;
+    }
+
+    .metric-sub{
+      color:var(--muted);
+      font-size:.9rem;
+      padding-bottom:4px;
+    }
+
+    .bars{
+      display:flex;
+      align-items:flex-end;
+      gap:6px;
+      height:58px;
+      margin-top:10px;
+    }
+
+    .bars span{
+      width:16px;
+      border-radius:999px 999px 4px 4px;
+      background:linear-gradient(180deg, var(--gold), var(--warm));
+      animation:barPulse 3s ease-in-out infinite;
+      transform-origin:bottom;
+    }
+    .bars span:nth-child(2){animation-delay:.15s}
+    .bars span:nth-child(3){animation-delay:.3s}
+    .bars span:nth-child(4){animation-delay:.45s}
+    .bars span:nth-child(5){animation-delay:.6s}
+    .bars span:nth-child(6){animation-delay:.75s}
+
+    .floating-orb{
+      position:absolute;
+      border-radius:50%;
+      filter:blur(.2px);
+      animation:orbFloat 8s ease-in-out infinite;
+      opacity:.95;
+    }
+    .orb-1{
+      width:92px;height:92px;
+      top:10%; right:4%;
+      background:radial-gradient(circle at 35% 35%, #a8dcf5, #1a8bc7 62%, rgba(26,139,199,0) 72%);
+    }
+    .orb-2{
+      width:116px;height:116px;
+      left:2%; bottom:16%;
+      background:radial-gradient(circle at 35% 35%, #a8cce5, #0d5f8a 62%, rgba(13,95,138,0) 72%);
+      animation-delay:-2s;
+    }
+    .orb-3{
+      width:78px;height:78px;
+      right:12%; bottom:7%;
+      background:radial-gradient(circle at 35% 35%, #b0d8f0, #0e5c84 62%, rgba(14,92,132,0) 72%);
+      animation-delay:-4s;
+    }
+
+    section{
+      padding:92px 0;
+      position:relative;
+    }
+
+    .section-head{
+      max-width:760px;
+      margin:0 auto 42px;
+      text-align:center;
+    }
+
+    .section-kicker{
+      color:#1169a0;
+      font-weight:800;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      font-size:.82rem;
+      margin-bottom:12px;
+    }
+
+    .section-head h2{
+      margin:0 0 14px;
+      font-family:"DM Serif Display", serif;
+      font-size:clamp(2.1rem,4.5vw,4rem);
+      letter-spacing:-.04em;
+      line-height:.98;
+    }
+
+    .section-head p{
+      margin:0;
+      color:var(--muted);
+      font-size:1.08rem;
+      line-height:1.7;
+    }
+
+    .feature-grid{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0,1fr));
+      gap:26px 42px;
+      align-items:start;
+    }
+
+    .feature{
+      padding:8px 0 20px;
+      border-bottom:1px solid rgba(17,105,160,.12);
+    }
+
+    .feature-top{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      margin-bottom:10px;
+    }
+
+    .feature-icon{
+      width:52px;height:52px;border-radius:18px;
+      display:grid;place-items:center;
+      color:white;font-size:1.25rem;font-weight:800;
+      box-shadow:0 14px 28px rgba(17,105,160,.12);
+    }
+
+    .feature:nth-child(1) .feature-icon{background:linear-gradient(135deg, var(--teal), #2a9fd4)}
+    .feature:nth-child(2) .feature-icon{background:linear-gradient(135deg, var(--warm), var(--gold))}
+    .feature:nth-child(3) .feature-icon{background:linear-gradient(135deg, var(--rose), #3a8ab8)}
+    .feature:nth-child(4) .feature-icon{background:linear-gradient(135deg, #0e5c84, #0a4a6e)}
+
+    .feature h3{
+      margin:0;
+      font-size:1.26rem;
+      letter-spacing:-.03em;
+    }
+
+    .feature p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.7;
+      max-width:48ch;
+    }
+
+    .use-section{
+      background:
+        linear-gradient(180deg, rgba(26,139,199,.08), rgba(255,255,255,0) 24%),
+        linear-gradient(180deg, #f8fbfe 0%, #eef5fb 100%);
+      border-top:1px solid rgba(17,105,160,.08);
+      border-bottom:1px solid rgba(17,105,160,.08);
+    }
+
+    .use-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:40px;
+      align-items:center;
+    }
+
+    .story-lines{
+      display:flex;
+      flex-direction:column;
+      gap:28px;
+    }
+
+    .story{
+      display:grid;
+      grid-template-columns:auto 1fr;
+      gap:16px;
+      align-items:start;
+    }
+
+    .story-num{
+      width:46px;height:46px;border-radius:50%;
+      display:grid;place-items:center;
+      font-weight:800;
+      color:#fff;
+      background:linear-gradient(135deg, var(--warm), var(--rose));
+      box-shadow:0 12px 24px rgba(13,95,138,.18);
+      flex:0 0 auto;
+    }
+
+    .story h3{
+      margin:0 0 8px;
+      font-size:1.18rem;
+      letter-spacing:-.03em;
+    }
+
+    .story p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.7;
+    }
+
+    .chat-device{
+      position:relative;
+      min-height:580px;
+      border-radius:36px;
+      overflow:hidden;
+      background:#ffffff;
+      box-shadow:var(--shadow);
+      border:1px solid rgba(17,105,160,.12);
+      display:flex;
+      flex-direction:column;
+    }
+
+    .chat-header{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      padding:18px 20px;
+      background:#ffffff;
+      border-bottom:1px solid rgba(17,105,160,.08);
+    }
+
+    .chat-avatar{
+      width:40px;height:40px;border-radius:50%;
+      background:linear-gradient(135deg, var(--warm), var(--teal));
+      display:grid;place-items:center;
+      color:#fff;font-weight:800;font-size:.9rem;
+      flex:0 0 auto;
+    }
+
+    .chat-header-info{flex:1}
+    .chat-header-name{font-weight:700;font-size:1rem;letter-spacing:-.02em;color:var(--ink)}
+    .chat-header-status{font-size:.78rem;color:var(--sage);font-weight:600;display:flex;align-items:center;gap:5px}
+    .chat-header-status::before{content:"";width:6px;height:6px;border-radius:50%;background:#2a9fd4;display:inline-block}
+
+    .chat-lang{
+      padding:6px 10px;border-radius:999px;
+      background:rgba(17,105,160,.07);color:#0e6a96;
+      font-weight:700;font-size:.75rem;
+    }
+
+    .chat-messages{
+      flex:1;
+      padding:20px;
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+      background:
+        linear-gradient(180deg, #f8fbfe 0%, #ffffff 100%);
+      overflow-y:auto;
+    }
+
+    .chat-time{
+      text-align:center;
+      font-size:.72rem;
+      color:var(--muted);
+      font-weight:600;
+      opacity:.7;
+      padding:4px 0;
+    }
+
+    .bubble{
+      max-width:82%;
+      padding:12px 16px;
+      border-radius:20px;
+      line-height:1.5;
+      font-size:.9rem;
+      animation:riseIn .8s ease both;
+    }
+
+    .bubble.user{
+      align-self:flex-end;
+      background:linear-gradient(135deg, var(--warm), var(--teal));
+      color:#fff;
+      border-bottom-right-radius:6px;
+    }
+
+    .bubble.bot{
+      align-self:flex-start;
+      background:#f0f6fa;
+      color:var(--ink);
+      border-bottom-left-radius:6px;
+      animation-delay:.15s;
+    }
+
+    .bubble.bot.delayed{animation-delay:.3s}
+
+    .bubble-label{
+      font-size:.68rem;
+      font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:.06em;
+      margin-bottom:4px;
+      opacity:.7;
+    }
+
+    .bubble.user .bubble-label{color:rgba(255,255,255,.8)}
+    .bubble.bot .bubble-label{color:var(--warm)}
+
+    .typing-indicator{
+      align-self:flex-start;
+      display:flex;
+      gap:4px;
+      padding:12px 18px;
+      background:#f0f6fa;
+      border-radius:20px;
+      border-bottom-left-radius:6px;
+      animation:riseIn .8s ease both;
+      animation-delay:.45s;
+    }
+
+    .typing-indicator span{
+      width:7px;height:7px;border-radius:50%;
+      background:var(--warm);opacity:.4;
+      animation:typingDot 1.4s ease-in-out infinite;
+    }
+    .typing-indicator span:nth-child(2){animation-delay:.2s}
+    .typing-indicator span:nth-child(3){animation-delay:.4s}
+
+    @keyframes typingDot{
+      0%,60%,100%{opacity:.4;transform:translateY(0)}
+      30%{opacity:1;transform:translateY(-4px)}
+    }
+
+    .chat-input{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:14px 18px;
+      background:#ffffff;
+      border-top:1px solid rgba(17,105,160,.08);
+    }
+
+    .chat-input-field{
+      flex:1;
+      padding:10px 16px;
+      border-radius:999px;
+      border:1px solid rgba(17,105,160,.12);
+      background:#f8fbfe;
+      color:var(--muted);
+      font-size:.88rem;
+      font-family:inherit;
+    }
+
+    .chat-send{
+      width:38px;height:38px;border-radius:50%;
+      background:linear-gradient(135deg, var(--warm), var(--teal));
+      border:none;cursor:pointer;
+      display:grid;place-items:center;
+      color:#fff;font-size:1.1rem;
+      flex:0 0 auto;
+    }
+
+    .faq{
+      display:grid;
+      gap:16px;
+      max-width:860px;
+      margin:0 auto;
+    }
+
+    .faq-item{
+      border-bottom:1px solid rgba(17,105,160,.12);
+      padding-bottom:16px;
+    }
+
+    .faq-q{
+      width:100%;
+      background:none;
+      border:none;
+      padding:8px 0;
+      text-align:left;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+      font:inherit;
+      color:inherit;
+      cursor:pointer;
+      font-weight:700;
+      font-size:1.08rem;
+      letter-spacing:-.02em;
+    }
+
+    .faq-icon{
+      width:30px;height:30px;border-radius:50%;
+      display:grid;place-items:center;
+      background:rgba(17,105,160,.08);
+      color:#1169a0;
+      font-size:1.15rem;
+      flex:0 0 auto;
+      transition:transform .25s ease, background .25s ease;
+    }
+
+    .faq-item.active .faq-icon{
+      transform:rotate(45deg);
+      background:rgba(13,95,138,.12);
+    }
+
+    .faq-a{
+      max-height:0;
+      overflow:hidden;
+      color:var(--muted);
+      line-height:1.7;
+      transition:max-height .35s ease;
+      padding-right:50px;
+    }
+
+    .faq-a p{margin:0}
+
+    .health-notice{
+      max-width:860px;
+      margin:0 auto;
+      padding:32px 28px;
+      border-radius:20px;
+      background:rgba(17,105,160,.05);
+      border:1px solid rgba(17,105,160,.12);
+      text-align:center;
+    }
+
+    .health-notice h3{
+      margin:0 0 10px;
+      color:#0e5c84;
+      font-size:1.1rem;
+      letter-spacing:-.02em;
+    }
+
+    .health-notice p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.7;
+      font-size:.98rem;
+    }
+
+    .cta-band{
+      padding:92px 0 110px;
+    }
+
+    .cta-wrap{
+      position:relative;
+      overflow:hidden;
+      border-radius:40px;
+      padding:52px 34px;
+      text-align:center;
+      background:
+        radial-gradient(circle at 18% 20%, rgba(26,139,199,.22), transparent 24%),
+        radial-gradient(circle at 82% 18%, rgba(13,95,138,.20), transparent 24%),
+        linear-gradient(135deg, #eef6fb 0%, #f8fbfe 48%, #f0f7fc 100%);
+      border:1px solid rgba(17,105,160,.10);
+      box-shadow:var(--shadow);
+    }
+
+    .cta-wrap h2{
+      margin:0 0 14px;
+      font-family:"DM Serif Display", serif;
+      font-size:clamp(2.2rem,4vw,3.8rem);
+      letter-spacing:-.04em;
+      line-height:1;
+    }
+
+    .cta-wrap p{
+      margin:0 auto 26px;
+      max-width:700px;
+      color:var(--muted);
+      line-height:1.7;
+      font-size:1.05rem;
+    }
+
+    footer{
+      border-top:1px solid rgba(17,105,160,.08);
+      background:#ffffff;
+    }
+
+    .footer-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+      padding:24px 0;
+      color:#5a7186;
+      font-size:.95rem;
+    }
+
+    .footer-links{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      font-size:.88rem;
+    }
+
+    .footer-links a{
+      color:#5a7186;
+      transition:color .2s ease;
+    }
+
+    .footer-links a:hover{
+      color:var(--warm);
+    }
+
+    .reveal{
+      opacity:0;
+      transform:translateY(24px);
+      transition:opacity .7s ease, transform .7s ease;
+    }
+    .reveal.visible{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    @keyframes phoneDrift{
+      0%,100%{transform:rotate(-8deg) translateY(0)}
+      50%{transform:rotate(-6deg) translateY(-10px)}
+    }
+
+    @keyframes floatHalo{
+      0%,100%{transform:scale(1)}
+      50%{transform:scale(1.04)}
+    }
+
+    @keyframes orbFloat{
+      0%,100%{transform:translateY(0) translateX(0)}
+      50%{transform:translateY(-14px) translateX(6px)}
+    }
+
+    @keyframes barPulse{
+      0%,100%{transform:scaleY(.88)}
+      50%{transform:scaleY(1.06)}
+    }
+
+    @keyframes riseIn{
+      from{opacity:0; transform:translateY(16px)}
+      to{opacity:1; transform:translateY(0)}
+    }
+
+    @media (max-width: 980px){
+      .nav-links,.nav-cta .desktop-only{display:none}
+      .menu-toggle{display:flex}
+      .hero-grid,.use-grid,.feature-grid{
+        grid-template-columns:1fr;
+      }
+      .hero{
+        min-height:auto;
+      }
+      .hero-grid{
+        padding:34px 0 34px;
+        gap:28px;
+      }
+      .hero-visual{
+        min-height:auto;
+        order:-1;
+      }
+      .phone{
+        width:min(320px,84vw);
+        height:640px;
+        transform:rotate(-4deg);
+      }
+      .chat-device{
+        min-height:430px;
+      }
+      .footer-inner{
+        flex-direction:column;
+        text-align:center;
+      }
+      .mobile-panel{
+        position:absolute;
+        top:78px; left:16px; right:16px;
+        background:rgba(255,255,255,.95);
+        backdrop-filter:blur(16px);
+        border:1px solid rgba(17,105,160,.10);
+        border-radius:24px;
+        box-shadow:var(--shadow);
+        padding:16px;
+        display:none;
+        flex-direction:column;
+        gap:10px;
+      }
+      .mobile-panel.open{display:flex}
+      .mobile-panel a,
+      .mobile-panel button{
+        padding:14px 6px;
+        border-bottom:1px solid rgba(17,105,160,.08);
+        color:var(--ink);
+        font-weight:600;
+      }
+      .mobile-panel a:last-of-type{border-bottom:none}
+    }
+
+    @media (min-width: 981px){
+      .mobile-panel{display:none !important}
+    }
+
+    @media (max-width: 640px){
+      .container{width:min(var(--max), calc(100% - 22px))}
+      .hero-brand{font-size:clamp(2.6rem, 14vw, 4.4rem)}
+      .hero-brand .accent{font-size:1.2rem}
+      .hero-copy{font-size:1rem}
+      .section-head p{font-size:1rem}
+      .btn{width:100%}
+      .hero-actions{flex-direction:column}
+      .phone{
+        height:600px;
+        border-radius:36px;
+        padding:12px;
+      }
+      .screen{border-radius:28px}
+      .cta-wrap{padding:38px 22px}
+      .faq-a{padding-right:0}
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="container nav">
+      <a href="#top" class="brand" aria-label="MiSana home">
+        <img src="logo-misana.png" alt="MiSana — family health companion" class="brand-logo">
+      </a>
+
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#features">Why MiSana</a>
+        <a href="#how">How it helps</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+
+      <div class="nav-cta">
+        <a href="#download" class="btn btn-primary desktop-only">Get notified</a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobilePanel">
+          <span></span>
+        </button>
+      </div>
+    </div>
+    <div class="container">
+      <div class="mobile-panel" id="mobilePanel">
+        <a href="#features">Why MiSana</a>
+        <a href="#how">How it helps</a>
+        <a href="#faq">FAQ</a>
+        <a href="#download" class="btn btn-primary" style="margin-top:8px;">Get notified</a>
+      </div>
+    </div>
+  </div>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-content reveal">
+          <div class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            Private. Offline. Bilingual.
+          </div>
+
+          <h1 class="hero-brand">
+            MiSana
+            <span class="accent">Understand your family's health — en español y en English.</span>
+          </h1>
+
+          <p class="hero-copy">
+            MiSana is a bilingual family health companion that helps you understand your health data, look up medications, check symptoms, and prepare for doctor appointments — all in Spanish and English.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#download" class="btn btn-primary">Join the waitlist</a>
+            <a href="#features" class="btn btn-secondary">See what makes it different</a>
+          </div>
+
+          <div class="micro-note" aria-label="Key product highlights">
+            <span><i></i> 100% private on-device AI</span>
+            <span><i></i> Works fully offline</span>
+            <span><i></i> Reads Apple Health with permission</span>
+          </div>
+        </div>
+
+        <div class="hero-visual reveal">
+          <div class="phone-stage">
+            <div class="halo" aria-hidden="true"></div>
+            <div class="floating-orb orb-1" aria-hidden="true"></div>
+            <div class="floating-orb orb-2" aria-hidden="true"></div>
+            <div class="floating-orb orb-3" aria-hidden="true"></div>
+
+            <div class="phone" aria-label="MiSana app preview">
+              <div class="screen">
+                <div class="screen-header">
+                  <div class="app-title">MiSana</div>
+                  <div class="lang-chip">ES ↔ EN</div>
+                </div>
+
+                <h3>Tu salud, clara y privada.</h3>
+                <p>Understand your Apple Health data, medications, symptoms, and doctor questions — without sending anything to the cloud.</p>
+
+                <div class="module">
+                  <div class="module-row">
+                    <div class="module-title">Heart rate trends</div>
+                    <div class="badge badge-health">Apple Health</div>
+                  </div>
+                  <div class="metric">
+                    <div class="metric-big">72</div>
+                    <div class="metric-sub">avg bpm today</div>
+                  </div>
+                  <div class="bars" aria-hidden="true">
+                    <span style="height:36px"></span>
+                    <span style="height:28px"></span>
+                    <span style="height:46px"></span>
+                    <span style="height:52px"></span>
+                    <span style="height:40px"></span>
+                    <span style="height:32px"></span>
+                  </div>
+                </div>
+
+                <div class="module">
+                  <div class="module-row">
+                    <div class="module-title">Medication lookup</div>
+                    <div class="badge badge-offline">Offline</div>
+                  </div>
+                  <p style="margin-bottom:0;">Search names in English, Spanish, Mexican Spanish, or Spanglish and get easy-to-understand explanations.</p>
+                </div>
+
+                <div class="module">
+                  <div class="module-row">
+                    <div class="module-title">Ask sensitive questions</div>
+                    <div class="badge badge-private">Private</div>
+                  </div>
+                  <p style="margin-bottom:0;">MiSana runs directly on your iPhone. No accounts. No servers. No data leaving your device.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="features">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="section-kicker">What makes MiSana different</div>
+          <h2>Built for trust, clarity, and everyday family health.</h2>
+          <p>
+            MiSana is designed for real life: checking symptoms at home, understanding medications for abuelitos and kids, and walking into doctor visits better prepared.
+          </p>
+        </div>
+
+        <div class="feature-grid">
+          <div class="feature reveal">
+            <div class="feature-top">
+              <div class="feature-icon">✓</div>
+              <h3>100% private by design</h3>
+            </div>
+            <p>
+              MiSana runs an AI model directly on your iPhone. Your health data never leaves your device — no servers, no cloud processing, and no account required.
+            </p>
+          </div>
+
+          <div class="feature reveal">
+            <div class="feature-top">
+              <div class="feature-icon">◔</div>
+              <h3>Works offline anywhere</h3>
+            </div>
+            <p>
+              No signal? No problem. Everything runs locally on your phone, so you can check medications, symptoms, and health information even without internet access.
+            </p>
+          </div>
+
+          <div class="feature reveal">
+            <div class="feature-top">
+              <div class="feature-icon">ES</div>
+              <h3>Truly bilingual</h3>
+            </div>
+            <p>
+              Full support for Spanish and English, including Mexican Spanish and Spanglish. Ask questions in the language your family actually uses at home.
+            </p>
+          </div>
+
+          <div class="feature reveal">
+            <div class="feature-top">
+              <div class="feature-icon">♥</div>
+              <h3>Reads Apple Health</h3>
+            </div>
+            <p>
+              With your permission, MiSana reads your steps, heart rate, sleep, blood pressure, blood oxygen, and more from Apple Health (read-only — we never modify your data).
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="how" class="use-section">
+      <div class="container use-grid">
+        <div class="reveal">
+          <div class="section-kicker">Features</div>
+          <h2 style="margin:0 0 16px;font-family:'DM Serif Display',serif;font-size:clamp(2rem,4.3vw,3.6rem);line-height:1;letter-spacing:-.04em;">Everything your family needs for everyday health questions.</h2>
+          <p style="margin:0 0 28px;color:var(--muted);line-height:1.7;font-size:1.05rem;">
+            MiSana brings together health understanding, medication lookup, symptom guidance, and appointment prep in one place — so you can feel more informed before, during, and after care.
+          </p>
+
+          <div class="story-lines">
+            <div class="story">
+              <div class="story-num">1</div>
+              <div>
+                <h3>Home</h3>
+                <p>See your health snapshot powered by Apple Health data, including steps, heart rate, sleep quality, and trends.</p>
+              </div>
+            </div>
+
+            <div class="story">
+              <div class="story-num">2</div>
+              <div>
+                <h3>Medications</h3>
+                <p>Scan medication barcodes with your camera or search by name. Keep track of your family's medications in one place.</p>
+              </div>
+            </div>
+
+            <div class="story">
+              <div class="story-num">3</div>
+              <div>
+                <h3>Symptoms</h3>
+                <p>Describe what you're feeling and get general health information to help you have better conversations with your doctor.</p>
+              </div>
+            </div>
+
+            <div class="story">
+              <div class="story-num">4</div>
+              <div>
+                <h3>Appointments</h3>
+                <p>Prepare for doctor appointments with AI-generated questions based on your health data and symptoms.</p>
+              </div>
+            </div>
+
+            <div class="story">
+              <div class="story-num">5</div>
+              <div>
+                <h3>Ask</h3>
+                <p>Chat with MiSana's on-device AI about general health topics in Spanish or English.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="chat-device reveal" aria-label="Bilingual conversation preview">
+          <div class="chat-header">
+            <div class="chat-avatar">M</div>
+            <div class="chat-header-info">
+              <div class="chat-header-name">MiSana</div>
+              <div class="chat-header-status">On-device AI</div>
+            </div>
+            <div class="chat-lang">ES / EN</div>
+          </div>
+
+          <div class="chat-messages">
+            <div class="chat-time">Today, 2:34 PM</div>
+
+            <div class="bubble user">
+              <div class="bubble-label">You</div>
+              What questions should I ask the doctor about my mom's blood pressure?
+            </div>
+
+            <div class="bubble bot">
+              <div class="bubble-label">MiSana</div>
+              Based on your mom's recent Apple Health readings, here are some questions to bring to her next appointment:
+            </div>
+
+            <div class="bubble bot delayed">
+              <div class="bubble-label">MiSana</div>
+              I can also help you look up her medications and explain possible side effects.
+            </div>
+
+            <div class="typing-indicator" aria-label="MiSana is typing">
+              <span></span><span></span><span></span>
+            </div>
+          </div>
+
+          <div class="chat-input">
+            <div class="chat-input-field">Ask a health question...</div>
+            <button class="chat-send" aria-label="Send">↑</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="section-kicker">FAQ</div>
+          <h2>Privacy-first answers for a health app that stays with you.</h2>
+          <p>
+            MiSana is built to be useful, understandable, and respectful of the sensitivity of family health information.
+          </p>
+        </div>
+
+        <div class="faq">
+          <div class="faq-item reveal active">
+            <button class="faq-q" type="button">
+              <span>Does MiSana send my health data to the cloud?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-a" style="max-height:160px;">
+              <p>No. MiSana runs directly on your iPhone. Your health data stays on your device and is not sent to external servers for AI processing.</p>
+            </div>
+          </div>
+
+          <div class="faq-item reveal">
+            <button class="faq-q" type="button">
+              <span>Can I use MiSana without internet?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-a">
+              <p>Yes. MiSana is designed to work offline. No internet connection needed — everything runs locally on your phone.</p>
+            </div>
+          </div>
+
+          <div class="faq-item reveal">
+            <button class="faq-q" type="button">
+              <span>What languages does MiSana support?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-a">
+              <p>MiSana supports English and Spanish, including Mexican Spanish and the everyday mix of Spanglish many families naturally use.</p>
+            </div>
+          </div>
+
+          <div class="faq-item reveal">
+            <button class="faq-q" type="button">
+              <span>What Apple Health data can MiSana read?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-a">
+              <p>With your permission, MiSana can read data like steps, heart rate, sleep, blood pressure, blood oxygen, and more. Access is read-only — MiSana never changes your data.</p>
+            </div>
+          </div>
+
+          <div class="faq-item reveal">
+            <button class="faq-q" type="button">
+              <span>What about my privacy?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-a">
+              <p>MiSana uses HealthKit to read your health and fitness data. All data is processed on-device using a local AI model. We do not collect, store, or share your data with anyone. No ads. No tracking. No third-party analytics.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="health-notice reveal">
+          <h3>Important Health Notice</h3>
+          <p>MiSana is NOT a doctor. This app does not diagnose diseases, does not replace medical advice, and should not be used in medical emergencies. If you have an emergency, call 911. Always consult a healthcare professional before making medical decisions.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="download" class="cta-band">
+      <div class="container">
+        <div class="cta-wrap reveal">
+          <h2>MiSana is for families who want health help without giving up privacy.</h2>
+          <p>
+            Be the first to hear when MiSana launches on iPhone. A bilingual health companion, built for your family, designed to stay on your device.
+          </p>
+          <div class="hero-actions" style="justify-content:center; margin-bottom:0;">
+            <a href="mailto:hello@misana.app?subject=Notify%20me%20about%20MiSana" class="btn btn-primary">Join the waitlist</a>
+            <a href="#top" class="btn btn-secondary">Back to top</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <a href="#top" class="brand" aria-label="MiSana home">
+        <img src="logo-misana.png" alt="MiSana" class="brand-logo" style="height:36px;">
+      </a>
+      <div>&copy; 2026 MiSana. All rights reserved.</div>
+      <div class="footer-links">
+        <a href="https://odphineguy.github.io/misana/privacy">Privacy Policy</a>
+        <span>·</span>
+        <a href="https://odphineguy.github.io/misana/terms">Terms of Use</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const mobilePanel = document.getElementById('mobilePanel');
+
+    menuToggle?.addEventListener('click', () => {
+      const open = mobilePanel.classList.toggle('open');
+      menuToggle.classList.toggle('active', open);
+      menuToggle.setAttribute('aria-expanded', String(open));
+    });
+
+    mobilePanel?.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobilePanel.classList.remove('open');
+        menuToggle.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    document.querySelectorAll('.faq-item').forEach(item => {
+      const button = item.querySelector('.faq-q');
+      const answer = item.querySelector('.faq-a');
+
+      button.addEventListener('click', () => {
+        const isActive = item.classList.contains('active');
+
+        document.querySelectorAll('.faq-item').forEach(other => {
+          other.classList.remove('active');
+          other.querySelector('.faq-a').style.maxHeight = null;
+        });
+
+        if (!isActive) {
+          item.classList.add('active');
+          answer.style.maxHeight = answer.scrollHeight + 'px';
+        }
+      });
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.14 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
