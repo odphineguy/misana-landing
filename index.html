@@ -229,8 +229,14 @@
 
     .eyebrow-dot{
       width:9px;height:9px;border-radius:50%;
-      background:linear-gradient(135deg, var(--warm), var(--rose));
+      background:var(--warm);
       box-shadow:0 0 0 6px rgba(17,105,160,.12);
+      animation:blink 2s ease-in-out infinite;
+    }
+
+    @keyframes blink{
+      0%, 100%{opacity:1; box-shadow:0 0 0 6px rgba(17,105,160,.12);}
+      50%{opacity:.3; box-shadow:0 0 0 3px rgba(17,105,160,.06);}
     }
 
     .hero-brand{
@@ -1039,7 +1045,7 @@
       </nav>
 
       <div class="nav-cta">
-        <a href="#download" class="btn btn-primary desktop-only">Get notified</a>
+        <a href="#download" class="btn btn-primary desktop-only">Download</a>
         <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobilePanel">
           <span></span>
         </button>
@@ -1050,7 +1056,7 @@
         <a href="#features">Why MiSana</a>
         <a href="#how">How it helps</a>
         <a href="#faq">FAQ</a>
-        <a href="#download" class="btn btn-primary" style="margin-top:8px;">Get notified</a>
+        <a href="#download" class="btn btn-primary" style="margin-top:8px;">Download</a>
       </div>
     </div>
   </div>
@@ -1074,7 +1080,7 @@
           </p>
 
           <div class="hero-actions">
-            <a href="#download" class="btn btn-primary">Join the waitlist</a>
+            <a href="#download" class="btn btn-primary">Download on the App Store</a>
             <a href="#features" class="btn btn-secondary">See what makes it different</a>
           </div>
 
@@ -1368,10 +1374,10 @@
         <div class="cta-wrap reveal">
           <h2>MiSana is for families who want health help without giving up privacy.</h2>
           <p>
-            Be the first to hear when MiSana launches on iPhone. A bilingual health companion, built for your family, designed to stay on your device.
+            A bilingual health companion, built for your family, designed to stay on your device. Available now on iPhone.
           </p>
           <div class="hero-actions" style="justify-content:center; margin-bottom:0;">
-            <a href="mailto:hello@misana.app?subject=Notify%20me%20about%20MiSana" class="btn btn-primary">Join the waitlist</a>
+            <a href="#download" class="btn btn-primary">Download on the App Store</a>
             <a href="#top" class="btn btn-secondary">Back to top</a>
           </div>
         </div>
