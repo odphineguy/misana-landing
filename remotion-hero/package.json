@@ -1,0 +1,27 @@
+{
+  "name": "misana-hero-animation",
+  "version": "1.0.0",
+  "description": "Looping phone animation for the MiSana landing page hero",
+  "scripts": {
+    "start": "remotion studio",
+    "build": "npm run build-hero && npm run build-prepare",
+    "build-hero": "npm run build-hero-webm && npm run build-hero-mp4",
+    "build-hero-webm": "remotion render HeroPhone ../hero-phone.webm --codec vp9 --pixel-format yuva420p --image-format png",
+    "build-hero-mp4": "remotion render HeroPhoneSolid ../hero-phone.mp4 --codec h264 --crf 22",
+    "build-prepare": "npm run build-prepare-webm && npm run build-prepare-mp4",
+    "build-prepare-webm": "remotion render PrepareAppointment ../hero-prepare.webm --codec vp9 --pixel-format yuva420p --image-format png",
+    "build-prepare-mp4": "remotion render PrepareAppointmentSolid ../hero-prepare.mp4 --codec h264 --crf 22"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.446",
+    "@remotion/google-fonts": "4.0.446",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "remotion": "4.0.446"
+  },
+  "devDependencies": {
+    "@types/react": "19.0.0",
+    "@types/react-dom": "19.0.0",
+    "typescript": "5.5.4"
+  }
+}

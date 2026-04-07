@@ -323,151 +323,19 @@
       animation:floatHalo 7s ease-in-out infinite;
     }
 
-    .phone{
+    .phone-video{
       position:relative;
-      width:min(350px, 80vw);
-      height:700px;
-      border-radius:44px;
-      background:#0f2b3c;
-      padding:14px;
+      width:min(360px, 82vw);
+      height:auto;
+      aspect-ratio:540 / 1140;
+      display:block;
+      border-radius:46px;
+      background:#ffffff;
       box-shadow:
-        0 24px 80px rgba(14,92,132,.28),
-        inset 0 0 0 1px rgba(255,255,255,.06);
-      transform:rotate(-8deg) translateY(0);
-      animation:phoneDrift 7s ease-in-out infinite;
+        0 30px 80px rgba(14,92,132,.32),
+        0 0 0 1px rgba(255,255,255,.05);
+      object-fit:cover;
     }
-
-    .phone::before{
-      content:"";
-      position:absolute;
-      top:10px; left:50%;
-      transform:translateX(-50%);
-      width:120px; height:30px;
-      border-radius:0 0 18px 18px;
-      background:#091e2b;
-      z-index:3;
-    }
-
-    .screen{
-      position:relative;
-      width:100%;
-      height:100%;
-      overflow:hidden;
-      border-radius:34px;
-      background:
-        radial-gradient(circle at top right, rgba(26,139,199,.16), transparent 30%),
-        linear-gradient(180deg, #f4f9fd 0%, #ffffff 100%);
-      padding:22px 18px 18px;
-    }
-
-    .screen-header{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      margin-top:18px;
-      margin-bottom:18px;
-    }
-
-    .app-title{
-      font-weight:800;
-      color:#1169a0;
-      font-size:1.18rem;
-      letter-spacing:-.03em;
-    }
-
-    .lang-chip{
-      padding:10px 12px;
-      border-radius:999px;
-      background:rgba(17,105,160,.08);
-      color:#0e6a96;
-      font-weight:700;
-      font-size:.85rem;
-    }
-
-    .screen h3{
-      margin:0 0 10px;
-      font-size:1.65rem;
-      line-height:1.05;
-      letter-spacing:-.04em;
-    }
-
-    .screen p{
-      margin:0 0 18px;
-      color:var(--muted);
-      line-height:1.5;
-      font-size:.96rem;
-    }
-
-    .module{
-      padding:16px 0;
-      border-top:1px solid rgba(17,105,160,.09);
-    }
-
-    .module:first-of-type{border-top:none}
-
-    .module-row{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:14px;
-      margin-bottom:12px;
-    }
-
-    .module-title{
-      font-weight:700;
-      letter-spacing:-.02em;
-    }
-
-    .badge{
-      padding:8px 10px;
-      border-radius:999px;
-      font-size:.77rem;
-      font-weight:700;
-    }
-
-    .badge-private{background:rgba(14,92,132,.11); color:#0e5c84}
-    .badge-offline{background:rgba(26,139,199,.16); color:#0e5c84}
-    .badge-health{background:rgba(13,95,138,.12); color:#0d5f8a}
-
-    .metric{
-      display:flex;
-      align-items:end;
-      gap:12px;
-    }
-
-    .metric-big{
-      font-size:2.2rem;
-      font-weight:800;
-      letter-spacing:-.05em;
-      color:#0f2b3c;
-    }
-
-    .metric-sub{
-      color:var(--muted);
-      font-size:.9rem;
-      padding-bottom:4px;
-    }
-
-    .bars{
-      display:flex;
-      align-items:flex-end;
-      gap:6px;
-      height:58px;
-      margin-top:10px;
-    }
-
-    .bars span{
-      width:16px;
-      border-radius:999px 999px 4px 4px;
-      background:linear-gradient(180deg, var(--gold), var(--warm));
-      animation:barPulse 3s ease-in-out infinite;
-      transform-origin:bottom;
-    }
-    .bars span:nth-child(2){animation-delay:.15s}
-    .bars span:nth-child(3){animation-delay:.3s}
-    .bars span:nth-child(4){animation-delay:.45s}
-    .bars span:nth-child(5){animation-delay:.6s}
-    .bars span:nth-child(6){animation-delay:.75s}
 
     .floating-orb{
       position:absolute;
@@ -623,156 +491,16 @@
       line-height:1.7;
     }
 
-    .chat-device{
+    .prepare-stage{
       position:relative;
+      display:flex;
+      align-items:center;
+      justify-content:center;
       min-height:580px;
-      border-radius:36px;
-      overflow:hidden;
-      background:#ffffff;
-      box-shadow:var(--shadow);
-      border:1px solid rgba(17,105,160,.12);
-      display:flex;
-      flex-direction:column;
     }
 
-    .chat-header{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      padding:18px 20px;
-      background:#ffffff;
-      border-bottom:1px solid rgba(17,105,160,.08);
-    }
-
-    .chat-avatar{
-      width:40px;height:40px;border-radius:50%;
-      background:linear-gradient(135deg, var(--warm), var(--teal));
-      display:grid;place-items:center;
-      color:#fff;font-weight:800;font-size:.9rem;
-      flex:0 0 auto;
-    }
-
-    .chat-header-info{flex:1}
-    .chat-header-name{font-weight:700;font-size:1rem;letter-spacing:-.02em;color:var(--ink)}
-    .chat-header-status{font-size:.78rem;color:var(--sage);font-weight:600;display:flex;align-items:center;gap:5px}
-    .chat-header-status::before{content:"";width:6px;height:6px;border-radius:50%;background:#2a9fd4;display:inline-block}
-
-    .chat-lang{
-      padding:6px 10px;border-radius:999px;
-      background:rgba(17,105,160,.07);color:#0e6a96;
-      font-weight:700;font-size:.75rem;
-    }
-
-    .chat-messages{
-      flex:1;
-      padding:20px;
-      display:flex;
-      flex-direction:column;
-      gap:14px;
-      background:
-        linear-gradient(180deg, #f8fbfe 0%, #ffffff 100%);
-      overflow-y:auto;
-    }
-
-    .chat-time{
-      text-align:center;
-      font-size:.72rem;
-      color:var(--muted);
-      font-weight:600;
-      opacity:.7;
-      padding:4px 0;
-    }
-
-    .bubble{
-      max-width:82%;
-      padding:12px 16px;
-      border-radius:20px;
-      line-height:1.5;
-      font-size:.9rem;
-      animation:riseIn .8s ease both;
-    }
-
-    .bubble.user{
-      align-self:flex-end;
-      background:linear-gradient(135deg, var(--warm), var(--teal));
-      color:#fff;
-      border-bottom-right-radius:6px;
-    }
-
-    .bubble.bot{
-      align-self:flex-start;
-      background:#f0f6fa;
-      color:var(--ink);
-      border-bottom-left-radius:6px;
-      animation-delay:.15s;
-    }
-
-    .bubble.bot.delayed{animation-delay:.3s}
-
-    .bubble-label{
-      font-size:.68rem;
-      font-weight:700;
-      text-transform:uppercase;
-      letter-spacing:.06em;
-      margin-bottom:4px;
-      opacity:.7;
-    }
-
-    .bubble.user .bubble-label{color:rgba(255,255,255,.8)}
-    .bubble.bot .bubble-label{color:var(--warm)}
-
-    .typing-indicator{
-      align-self:flex-start;
-      display:flex;
-      gap:4px;
-      padding:12px 18px;
-      background:#f0f6fa;
-      border-radius:20px;
-      border-bottom-left-radius:6px;
-      animation:riseIn .8s ease both;
-      animation-delay:.45s;
-    }
-
-    .typing-indicator span{
-      width:7px;height:7px;border-radius:50%;
-      background:var(--warm);opacity:.4;
-      animation:typingDot 1.4s ease-in-out infinite;
-    }
-    .typing-indicator span:nth-child(2){animation-delay:.2s}
-    .typing-indicator span:nth-child(3){animation-delay:.4s}
-
-    @keyframes typingDot{
-      0%,60%,100%{opacity:.4;transform:translateY(0)}
-      30%{opacity:1;transform:translateY(-4px)}
-    }
-
-    .chat-input{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      padding:14px 18px;
-      background:#ffffff;
-      border-top:1px solid rgba(17,105,160,.08);
-    }
-
-    .chat-input-field{
-      flex:1;
-      padding:10px 16px;
-      border-radius:999px;
-      border:1px solid rgba(17,105,160,.12);
-      background:#f8fbfe;
-      color:var(--muted);
-      font-size:.88rem;
-      font-family:inherit;
-    }
-
-    .chat-send{
-      width:38px;height:38px;border-radius:50%;
-      background:linear-gradient(135deg, var(--warm), var(--teal));
-      border:none;cursor:pointer;
-      display:grid;place-items:center;
-      color:#fff;font-size:1.1rem;
-      flex:0 0 auto;
+    .phone-video--prepare{
+      width:min(320px, 80vw);
     }
 
     .faq{
@@ -930,11 +658,6 @@
       transform:translateY(0);
     }
 
-    @keyframes phoneDrift{
-      0%,100%{transform:rotate(-8deg) translateY(0)}
-      50%{transform:rotate(-6deg) translateY(-10px)}
-    }
-
     @keyframes floatHalo{
       0%,100%{transform:scale(1)}
       50%{transform:scale(1.04)}
@@ -943,11 +666,6 @@
     @keyframes orbFloat{
       0%,100%{transform:translateY(0) translateX(0)}
       50%{transform:translateY(-14px) translateX(6px)}
-    }
-
-    @keyframes barPulse{
-      0%,100%{transform:scaleY(.88)}
-      50%{transform:scaleY(1.06)}
     }
 
     @keyframes riseIn{
@@ -972,13 +690,14 @@
         min-height:auto;
         order:-1;
       }
-      .phone{
+      .phone-video{
         width:min(320px,84vw);
-        height:640px;
-        transform:rotate(-4deg);
       }
-      .chat-device{
-        min-height:430px;
+      .prepare-stage{
+        min-height:auto;
+      }
+      .phone-video--prepare{
+        width:min(300px,82vw);
       }
       .footer-inner{
         flex-direction:column;
@@ -1020,12 +739,10 @@
       .section-head p{font-size:1rem}
       .btn{width:100%}
       .hero-actions{flex-direction:column}
-      .phone{
-        height:600px;
-        border-radius:36px;
-        padding:12px;
+      .phone-video{
+        width:min(290px,82vw);
+        border-radius:38px;
       }
-      .screen{border-radius:28px}
       .cta-wrap{padding:38px 22px}
       .faq-a{padding-right:0}
     }
@@ -1098,52 +815,19 @@
             <div class="floating-orb orb-2" aria-hidden="true"></div>
             <div class="floating-orb orb-3" aria-hidden="true"></div>
 
-            <div class="phone" aria-label="MiSana app preview">
-              <div class="screen">
-                <div class="screen-header">
-                  <div class="app-title">MiSana</div>
-                  <div class="lang-chip">ES ↔ EN</div>
-                </div>
-
-                <h3>Tu salud, clara y privada.</h3>
-                <p>Understand your Apple Health data, medications, symptoms, and doctor questions — without sending anything to the cloud.</p>
-
-                <div class="module">
-                  <div class="module-row">
-                    <div class="module-title">Heart rate trends</div>
-                    <div class="badge badge-health">Apple Health</div>
-                  </div>
-                  <div class="metric">
-                    <div class="metric-big">72</div>
-                    <div class="metric-sub">avg bpm today</div>
-                  </div>
-                  <div class="bars" aria-hidden="true">
-                    <span style="height:36px"></span>
-                    <span style="height:28px"></span>
-                    <span style="height:46px"></span>
-                    <span style="height:52px"></span>
-                    <span style="height:40px"></span>
-                    <span style="height:32px"></span>
-                  </div>
-                </div>
-
-                <div class="module">
-                  <div class="module-row">
-                    <div class="module-title">Medication lookup</div>
-                    <div class="badge badge-offline">Offline</div>
-                  </div>
-                  <p style="margin-bottom:0;">Search names in English, Spanish, Mexican Spanish, or Spanglish and get easy-to-understand explanations.</p>
-                </div>
-
-                <div class="module">
-                  <div class="module-row">
-                    <div class="module-title">Ask sensitive questions</div>
-                    <div class="badge badge-private">Private</div>
-                  </div>
-                  <p style="margin-bottom:0;">MiSana runs directly on your iPhone. No accounts. No servers. No data leaving your device.</p>
-                </div>
-              </div>
-            </div>
+            <video
+              class="phone-video"
+              autoplay
+              muted
+              loop
+              playsinline
+              preload="auto"
+              poster="logo-misana.png"
+              aria-label="MiSana app preview animation"
+            >
+              <source src="hero-phone.webm" type="video/webm">
+              <source src="hero-phone.mp4" type="video/mp4">
+            </video>
           </div>
         </div>
       </div>
@@ -1255,43 +939,20 @@
           </div>
         </div>
 
-        <div class="chat-device reveal" aria-label="Bilingual conversation preview">
-          <div class="chat-header">
-            <div class="chat-avatar">M</div>
-            <div class="chat-header-info">
-              <div class="chat-header-name">MiSana</div>
-              <div class="chat-header-status">On-device AI</div>
-            </div>
-            <div class="chat-lang">ES / EN</div>
-          </div>
-
-          <div class="chat-messages">
-            <div class="chat-time">Today, 2:34 PM</div>
-
-            <div class="bubble user">
-              <div class="bubble-label">You</div>
-              What questions should I ask the doctor about my mom's blood pressure?
-            </div>
-
-            <div class="bubble bot">
-              <div class="bubble-label">MiSana</div>
-              Based on your mom's recent Apple Health readings, here are some questions to bring to her next appointment:
-            </div>
-
-            <div class="bubble bot delayed">
-              <div class="bubble-label">MiSana</div>
-              I can also help you look up her medications and explain possible side effects.
-            </div>
-
-            <div class="typing-indicator" aria-label="MiSana is typing">
-              <span></span><span></span><span></span>
-            </div>
-          </div>
-
-          <div class="chat-input">
-            <div class="chat-input-field">Ask a health question...</div>
-            <button class="chat-send" aria-label="Send">↑</button>
-          </div>
+        <div class="prepare-stage reveal" aria-label="Prepare appointment preview">
+          <video
+            class="phone-video phone-video--prepare"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="auto"
+            poster="logo-misana.png"
+            aria-label="Prepare Appointment animation"
+          >
+            <source src="hero-prepare.webm" type="video/webm">
+            <source src="hero-prepare.mp4" type="video/mp4">
+          </video>
         </div>
       </div>
     </section>
