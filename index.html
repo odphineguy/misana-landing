@@ -3,8 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MiSana — Your bilingual family health companion</title>
-  <meta name="description" content="MiSana is a bilingual family health companion that helps you understand health data, look up medications, check symptoms, and prepare for doctor appointments — privately on your iPhone." />
+  <title>MiSana — Bilingual Family Health App for iPhone (Spanish/English)</title>
+  <meta name="description" content="MiSana is a private, bilingual family health app for iPhone. Look up medications, check symptoms, understand Apple Health data, and prepare for doctor visits in Spanish and English — all on-device, with no cloud and no accounts." />
+  <meta name="keywords" content="bilingual health app, Spanish English health app, iPhone health app, private health AI, medication lookup, symptom checker, Apple Health, MedlinePlus, family health, on-device AI" />
+  <meta name="author" content="MiSana" />
+  <meta name="theme-color" content="#1169a0" />
+
+  <!-- Canonical + language alternates -->
+  <link rel="canonical" href="https://misana.app/" />
+  <link rel="alternate" hreflang="en" href="https://misana.app/" />
+  <link rel="alternate" hreflang="x-default" href="https://misana.app/" />
 
   <!-- Favicon -->
   <link rel="icon" href="favicon.ico" sizes="48x48">
@@ -14,17 +22,110 @@
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="MiSana — Your bilingual family health companion" />
-  <meta property="og:description" content="Understand your health data, look up medications, check symptoms, and prepare for doctor appointments — all in Spanish and English. 100% private, on-device AI." />
+  <meta property="og:title" content="MiSana — Bilingual Family Health App for iPhone" />
+  <meta property="og:description" content="Private, bilingual family health app for iPhone. Look up medications, check symptoms, understand Apple Health data, and prepare for doctor visits in Spanish and English — all on-device." />
   <meta property="og:image" content="https://misana.app/og-image.jpg" />
-  <meta property="og:url" content="https://misana.app" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="MiSana — bilingual family health companion on iPhone" />
+  <meta property="og:url" content="https://misana.app/" />
   <meta property="og:site_name" content="MiSana" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:locale:alternate" content="es_MX" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="MiSana — Your bilingual family health companion" />
-  <meta name="twitter:description" content="Understand your health data, look up medications, check symptoms, and prepare for doctor appointments — all in Spanish and English. 100% private, on-device AI." />
+  <meta name="twitter:title" content="MiSana — Bilingual Family Health App for iPhone" />
+  <meta name="twitter:description" content="Private, bilingual family health app for iPhone. Medications, symptoms, Apple Health, and doctor-visit prep in Spanish and English — all on-device." />
   <meta name="twitter:image" content="https://misana.app/og-image.jpg" />
+  <meta name="twitter:image:alt" content="MiSana — bilingual family health companion on iPhone" />
+
+  <!-- JSON-LD: SoftwareApplication -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "MiSana",
+    "alternateName": "MiSana — Family Health Companion",
+    "description": "Private, bilingual family health app for iPhone. Look up medications, check symptoms, understand Apple Health data, and prepare for doctor visits in Spanish and English — all on-device.",
+    "applicationCategory": "HealthApplication",
+    "operatingSystem": "iOS",
+    "url": "https://misana.app/",
+    "image": "https://misana.app/og-image.jpg",
+    "inLanguage": ["en", "es"],
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "MiSana",
+      "url": "https://misana.app/",
+      "logo": "https://misana.app/logo-misana.png",
+      "email": "support@misana.app"
+    },
+    "featureList": [
+      "Bilingual Spanish and English",
+      "100% on-device AI",
+      "Works offline",
+      "Reads Apple Health data",
+      "Medication lookup",
+      "Symptom checker",
+      "Doctor appointment prep"
+    ]
+  }
+  </script>
+
+  <!-- JSON-LD: FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Does MiSana send my health data to the cloud?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. MiSana runs directly on your iPhone. Your health data stays on your device and is not sent to external servers for AI processing."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I use MiSana without internet?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. MiSana is designed to work offline. No internet connection needed — everything runs locally on your phone."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What languages does MiSana support?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "MiSana supports English and Spanish, including Mexican Spanish and the everyday mix of Spanglish many families naturally use."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What Apple Health data can MiSana read?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "With your permission, MiSana can read data like steps, heart rate, sleep, blood pressure, blood oxygen, and more. Access is read-only — MiSana never changes your data."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What about my privacy?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "MiSana uses HealthKit to read your health and fitness data. All data is processed on-device using a local AI model. We do not collect, store, or share your data with anyone. No ads. No tracking. No third-party analytics."
+        }
+      }
+    ]
+  }
+  </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -821,7 +922,7 @@
               muted
               loop
               playsinline
-              preload="auto"
+              preload="metadata"
               poster="logo-misana.png"
               aria-label="MiSana app preview animation"
             >
@@ -946,7 +1047,7 @@
             muted
             loop
             playsinline
-            preload="auto"
+            preload="metadata"
             poster="logo-misana.png"
             aria-label="Prepare Appointment animation"
           >
@@ -1021,7 +1122,7 @@
       </div>
     </section>
 
-    <section>
+    <section id="disclaimer" aria-label="Health disclaimer">
       <div class="container">
         <div class="health-notice reveal">
           <h3>Important Health Notice</h3>
@@ -1084,9 +1185,15 @@
       });
     });
 
-    document.querySelectorAll('.faq-item').forEach(item => {
+    document.querySelectorAll('.faq-item').forEach((item, idx) => {
       const button = item.querySelector('.faq-q');
       const answer = item.querySelector('.faq-a');
+
+      // Wire up ARIA + initial state for screen readers and SEO
+      const answerId = answer.id || `faq-a-${idx}`;
+      answer.id = answerId;
+      button.setAttribute('aria-controls', answerId);
+      button.setAttribute('aria-expanded', String(item.classList.contains('active')));
 
       button.addEventListener('click', () => {
         const isActive = item.classList.contains('active');
@@ -1094,11 +1201,13 @@
         document.querySelectorAll('.faq-item').forEach(other => {
           other.classList.remove('active');
           other.querySelector('.faq-a').style.maxHeight = null;
+          other.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
         });
 
         if (!isActive) {
           item.classList.add('active');
           answer.style.maxHeight = answer.scrollHeight + 'px';
+          button.setAttribute('aria-expanded', 'true');
         }
       });
     });
