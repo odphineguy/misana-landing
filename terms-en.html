@@ -3,23 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MiSana - Terms of Service</title>
+    <title>MiSana — Terms of Service</title>
+    <link rel="icon" href="favicon.ico" sizes="48x48">
+    <link rel="icon" href="favicon-32x32.png" type="image/png" sizes="32x32">
+    <link rel="icon" href="favicon-16x16.png" type="image/png" sizes="16x16">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
     <style>
-        :root { --bg: #FAFAF9; --text: #1C1917; --muted: #57534E; --accent: #1169A0; --border: #E7E5E4; --card: #FFFFFF; }
-        @media (prefers-color-scheme: dark) { :root { --bg: #1C1917; --text: #FAFAF9; --muted: #A8A29E; --accent: #4DA6D9; --border: #292524; --card: #292524; } }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; padding: 2rem 1.25rem; max-width: 720px; margin: 0 auto; }
-        h1 { font-size: 1.75rem; font-weight: 700; margin-bottom: 0.25rem; }
-        h2 { font-size: 1.25rem; font-weight: 600; margin-top: 2rem; margin-bottom: 0.75rem; color: var(--accent); }
-        p, li { font-size: 0.95rem; color: var(--muted); margin-bottom: 0.75rem; }
-        ul { padding-left: 1.25rem; }
-        li { margin-bottom: 0.4rem; }
-        .subtitle { color: var(--muted); font-size: 0.9rem; margin-bottom: 2rem; }
-        .effective { font-size: 0.8rem; color: var(--muted); margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--border); }
-        .back { display: inline-block; margin-bottom: 1.5rem; color: var(--accent); text-decoration: none; font-size: 0.9rem; }
+        :root{
+            --bg:#f4f9fd;
+            --paper:#ffffff;
+            --ink:#0f2b3c;
+            --muted:#5a7186;
+            --line:rgba(17,105,160,.14);
+            --warm:#1169a0;
+            --shadow:0 18px 60px rgba(17,105,160,.12);
+        }
+        *{margin:0;padding:0;box-sizing:border-box}
+        html{scroll-behavior:smooth}
+        body{
+            font-family:"Outfit",system-ui,sans-serif;
+            color:var(--ink);
+            background:
+              radial-gradient(circle at 10% 10%, rgba(26,139,199,.14), transparent 28%),
+              radial-gradient(circle at 85% 18%, rgba(13,95,138,.10), transparent 28%),
+              radial-gradient(circle at 80% 88%, rgba(14,92,132,.08), transparent 24%),
+              linear-gradient(180deg, #f4f9fd 0%, #f8fbfe 42%, #ffffff 100%);
+            line-height:1.7;
+            min-height:100vh;
+        }
+        .wrap{
+            position:relative;
+            max-width:760px;
+            margin:0 auto;
+            padding:48px 24px 80px;
+        }
+        h1{
+            font-family:"DM Serif Display",serif;
+            font-size:clamp(2.2rem, 5vw, 3.2rem);
+            line-height:1;
+            letter-spacing:-.04em;
+            color:var(--warm);
+            margin-bottom:10px;
+        }
+        h2{
+            font-size:1.3rem;
+            font-weight:700;
+            letter-spacing:-.02em;
+            color:var(--warm);
+            margin-top:2.25rem;
+            margin-bottom:0.75rem;
+        }
+        p, li{
+            font-size:1rem;
+            color:var(--muted);
+            margin-bottom:0.75rem;
+            line-height:1.75;
+        }
+        strong{color:var(--ink); font-weight:700}
+        a{color:var(--warm); text-decoration:none}
+        a:hover{text-decoration:underline}
+        ul{padding-left:1.4rem; margin-bottom:0.75rem}
+        li{margin-bottom:0.4rem}
+        .subtitle{
+            color:var(--muted);
+            font-size:1.05rem;
+            margin-bottom:2.5rem;
+        }
+        .highlight{
+            background:var(--paper);
+            border:1px solid var(--line);
+            border-radius:20px;
+            padding:1.5rem 1.75rem;
+            margin:1.25rem 0;
+            box-shadow:var(--shadow);
+        }
+        .highlight p:last-child{margin-bottom:0}
+        .effective{
+            font-size:.9rem;
+            color:var(--muted);
+            margin-top:3rem;
+            padding-top:1.25rem;
+            border-top:1px solid var(--line);
+        }
+        .back{
+            display:inline-flex;
+            align-items:center;
+            gap:6px;
+            margin-bottom:2rem;
+            color:var(--warm);
+            font-size:.95rem;
+            font-weight:600;
+        }
+        .back:hover{text-decoration:underline}
+        @media (max-width:640px){
+            .wrap{padding:32px 18px 60px}
+            .highlight{padding:1.25rem 1.25rem; border-radius:16px}
+        }
     </style>
 </head>
 <body>
+<div class="wrap">
 <a class="back" href="https://misana.app/">&larr; Back</a>
 <h1>MiSana Terms of Service</h1>
 <p class="subtitle">Please read these terms carefully before using MiSana.</p>
@@ -87,5 +173,6 @@
 <p>For questions about these terms, contact us at: <strong>support@misana.app</strong></p>
 
 <p class="effective">Effective date: May 3, 2026</p>
+</div>
 </body>
 </html>
