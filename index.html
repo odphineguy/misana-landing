@@ -675,34 +675,6 @@
       object-fit:cover;
       object-position:top center;
     }
-    .phone-island{
-      position:absolute;
-      top:18px; left:50%;
-      transform:translateX(-50%);
-      width:60px; height:18px;
-      border-radius:11px;
-      background:#0a1722;
-      z-index:6;
-    }
-    .phone-status{
-      position:absolute;
-      top:20px; left:24px; right:24px;
-      display:flex; align-items:center; justify-content:space-between;
-      z-index:5;
-      font-size:9px; font-weight:700; color:#0a1722;
-      pointer-events:none;
-    }
-    .phone-status .ps-bars{
-      display:inline-flex; gap:1.5px; align-items:flex-end;
-    }
-    .phone-status .ps-bars i{
-      display:inline-block; width:2px; background:#0a1722; border-radius:1px;
-    }
-    .phone-status .ps-bars i:nth-child(1){ height:3px }
-    .phone-status .ps-bars i:nth-child(2){ height:5px }
-    .phone-status .ps-bars i:nth-child(3){ height:7px }
-    .phone-status .ps-bars i:nth-child(4){ height:9px }
-
     /* Shared screen primitives (mockup mode) */
     .ps-title{
       font-weight:800; font-size:14px; letter-spacing:-.02em;
@@ -1312,16 +1284,6 @@
               <img src="screens/apple-health.png" alt="MiSana health snapshot from Apple Health" class="ps-img">
             </div>
 
-            <!-- Phone chrome -->
-            <div class="phone-island"></div>
-            <div class="phone-status">
-              <span>9:41</span>
-              <span style="display:inline-flex; gap:5px; align-items:center;">
-                <span class="ps-bars"><i></i><i></i><i></i><i></i></span>
-                <span>📶</span>
-                <span>🔋</span>
-              </span>
-            </div>
           </div>
         </div>
       </div>
