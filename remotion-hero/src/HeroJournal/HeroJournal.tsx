@@ -16,14 +16,14 @@ loadFont("normal", {
   subsets: ["latin"],
 });
 
-export const PREPARE_APPT_DURATION = TOTAL_FRAMES;
-export const PREPARE_APPT_FPS = FPS;
+export const HERO_JOURNAL_DURATION = TOTAL_FRAMES;
+export const HERO_JOURNAL_FPS = FPS;
 
-export type PrepareAppointmentProps = {
+export type HeroJournalProps = {
   transparentBackground: boolean;
 };
 
-export const PrepareAppointment: React.FC<PrepareAppointmentProps> = ({
+export const HeroJournal: React.FC<HeroJournalProps> = ({
   transparentBackground,
 }) => {
   const frame = useCurrentFrame();

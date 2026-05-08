@@ -6,11 +6,11 @@ import {
   HeroPhoneProps,
 } from "./HeroPhone/HeroPhone";
 import {
-  PrepareAppointment,
-  PREPARE_APPT_DURATION,
-  PREPARE_APPT_FPS,
-  PrepareAppointmentProps,
-} from "./PrepareAppointment/PrepareAppointment";
+  HeroJournal,
+  HERO_JOURNAL_DURATION,
+  HERO_JOURNAL_FPS,
+  HeroJournalProps,
+} from "./HeroJournal/HeroJournal";
 
 const WIDTH = 540;
 const HEIGHT = 1140;
@@ -18,7 +18,32 @@ const HEIGHT = 1140;
 export const RemotionRoot: React.FC = () => {
   return (
     <>
-      {/* Hero phone — transparent VP9 WebM + solid H.264 MP4 */}
+      {/* Hero (current): bilingual symptom-journal flow */}
+      <Composition
+        id="HeroJournal"
+        component={HeroJournal}
+        durationInFrames={HERO_JOURNAL_DURATION}
+        fps={HERO_JOURNAL_FPS}
+        width={WIDTH}
+        height={HEIGHT}
+        defaultProps={
+          { transparentBackground: true } satisfies HeroJournalProps
+        }
+      />
+      <Composition
+        id="HeroJournalSolid"
+        component={HeroJournal}
+        durationInFrames={HERO_JOURNAL_DURATION}
+        fps={HERO_JOURNAL_FPS}
+        width={WIDTH}
+        height={HEIGHT}
+        defaultProps={
+          { transparentBackground: false } satisfies HeroJournalProps
+        }
+      />
+
+      {/* Legacy: chat/Q&A demo, still wired into the "How it works" slot
+          until that section is rebuilt. Slated for removal/replacement. */}
       <Composition
         id="HeroPhone"
         component={HeroPhone}
@@ -36,30 +61,6 @@ export const RemotionRoot: React.FC = () => {
         width={WIDTH}
         height={HEIGHT}
         defaultProps={{ transparentBackground: false } satisfies HeroPhoneProps}
-      />
-
-      {/* Prepare Appointment phone — same dual-render setup */}
-      <Composition
-        id="PrepareAppointment"
-        component={PrepareAppointment}
-        durationInFrames={PREPARE_APPT_DURATION}
-        fps={PREPARE_APPT_FPS}
-        width={WIDTH}
-        height={HEIGHT}
-        defaultProps={
-          { transparentBackground: true } satisfies PrepareAppointmentProps
-        }
-      />
-      <Composition
-        id="PrepareAppointmentSolid"
-        component={PrepareAppointment}
-        durationInFrames={PREPARE_APPT_DURATION}
-        fps={PREPARE_APPT_FPS}
-        width={WIDTH}
-        height={HEIGHT}
-        defaultProps={
-          { transparentBackground: false } satisfies PrepareAppointmentProps
-        }
       />
     </>
   );
