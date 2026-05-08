@@ -5,7 +5,7 @@ import {
   useCurrentFrame,
 } from "remotion";
 import { loadFont } from "@remotion/google-fonts/Outfit";
-import { PhoneFrame } from "../HeroPhone/PhoneFrame";
+import { PhoneFrame } from "./parts/PhoneFrame";
 import { NewEntryScreen } from "./screens/NewEntryScreen";
 import { SymptomsTrackerScreen } from "./screens/SymptomsTrackerScreen";
 import { DoctorBriefSheet } from "./parts/DoctorBriefSheet";

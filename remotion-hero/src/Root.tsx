@@ -1,11 +1,5 @@
 import { Composition } from "remotion";
 import {
-  HeroPhone,
-  HERO_PHONE_DURATION,
-  HERO_PHONE_FPS,
-  HeroPhoneProps,
-} from "./HeroPhone/HeroPhone";
-import {
   HeroJournal,
   HERO_JOURNAL_DURATION,
   HERO_JOURNAL_FPS,
@@ -18,7 +12,7 @@ const HEIGHT = 1140;
 export const RemotionRoot: React.FC = () => {
   return (
     <>
-      {/* Hero (current): bilingual symptom-journal flow */}
+      {/* Hero: bilingual symptom-journal flow → renders to ../hero.{webm,mp4} */}
       <Composition
         id="HeroJournal"
         component={HeroJournal}
@@ -40,27 +34,6 @@ export const RemotionRoot: React.FC = () => {
         defaultProps={
           { transparentBackground: false } satisfies HeroJournalProps
         }
-      />
-
-      {/* Legacy: chat/Q&A demo, still wired into the "How it works" slot
-          until that section is rebuilt. Slated for removal/replacement. */}
-      <Composition
-        id="HeroPhone"
-        component={HeroPhone}
-        durationInFrames={HERO_PHONE_DURATION}
-        fps={HERO_PHONE_FPS}
-        width={WIDTH}
-        height={HEIGHT}
-        defaultProps={{ transparentBackground: true } satisfies HeroPhoneProps}
-      />
-      <Composition
-        id="HeroPhoneSolid"
-        component={HeroPhone}
-        durationInFrames={HERO_PHONE_DURATION}
-        fps={HERO_PHONE_FPS}
-        width={WIDTH}
-        height={HEIGHT}
-        defaultProps={{ transparentBackground: false } satisfies HeroPhoneProps}
       />
     </>
   );
